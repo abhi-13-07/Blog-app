@@ -1,4 +1,4 @@
-/venv
+server/venv
 /server/db.sqlite3
 /server/api/migrations
 /server/api/__pycache__

@@ -1,0 +1,127 @@
+:root {
+	--btn-primary-color: #3b2ce3;
+	--btn-primary-hover-color: #2b1be0;
+	/* --btn-secondary-color: #8684a0; or #DEDEED */
+	--btn-danger-color: #f50057;
+	--btn-danger-hover-color: #d4084f;
+	--btn-dark-color: #242b2e;
+	--btn-dark-hover-color: #354349;
+	--btn-transition: 0.2s ease-in;
+}
+
+.btn {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+.btn:hover {
+	cursor: pointer;
+}
+
+.btn:disabled {
+	cursor: not-allowed;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+.btn-sm {
+	height: 30px;
+	width: 100px;
+	font-size: small;
+}
+
+.btn-md {
+	height: 50px;
+	width: 120px;
+	font-size: medium;
+}
+
+.btn-lg {
+	height: 70px;
+	width: 140px;
+	font-size: large;
+}
+
+.btn-block {
+	height: 40px;
+	width: 100%;
+}
+
+.btn-primary-contained {
+	background-color: var(--btn-primary-color);
+	color: white;
+	transition: var(--btn-transition);
+	border: 1px solid var(--btn-primary-color);
+}
+
+.btn-primary-contained:hover {
+	background-color: var(--btn-primary-hover-color);
+}
+
+.btn-primary-outline {
+	background: transparent;
+	color: var(--btn-primary-color);
+	border: 1px solid var(--btn-primary-color);
+	transition: var(--btn-transition);
+}
+
+.btn-primary-outline:hover {
+	background-color: var(--btn-primary-color);
+	color: white;
+}
+
+.btn-danger-contained {
+	background-color: var(--btn-danger-color);
+	color: white;
+	transition: var(--btn-transition);
+	border: 1px solid var(--btn-danger-color);
+}
+
+.btn-danger-contained:hover {
+	background-color: var(--btn-danger-hover-color);
+}
+
+.btn-danger-outline {
+	background: transparent;
+	color: var(--btn-danger-color);
+	border: 1px solid var(--btn-danger-color);
+	transition: var(--btn-transition);
+}
+
+.btn-danger-outline:hover {
+	background-color: var(--btn-danger-color);
+	color: white;
+}
+
+.btn-dark-contained {
+	background-color: var(--btn-dark-color);
+	color: white;
+	transition: var(--btn-transition);
+	border: 1px solid var(--btn-dark-color);
+}
+
+.btn-dark-contained:hover {
+	background-color: var(--btn-dark-hover-color);
+}
+
+.btn-dark-outline {
+	background: transparent;
+	color: var(--btn-dark-color);
+	border: 1px solid var(--btn-dark-color);
+	transition: var(--btn-transition);
+}
+
+.btn-dark-outline:hover {
+	background-color: var(--btn-dark-color);
+	color: white;
+}
+
+.btn-dark {
+	background-color: var(--btn-dark-color);
+}

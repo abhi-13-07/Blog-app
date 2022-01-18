@@ -12,3 +12,57 @@ body {
 .section {
 	padding: 0 50px 0 50px;
 }
+
+.centered {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.bg-white {
+	background-color: white;
+	padding: 25px 10px 25px 10px;
+	border-radius: 5px;
+}
+
+.center-container {
+	width: 30%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.center-container h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.form {
+	width: 90%;
+}
+
+.field {
+	display: grid;
+	gap: 5px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.field input {
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	padding-left: 8px;
+	outline: none;
+	font-size: 16px;
+}
+
+@media (max-width: 720px) {
+	.login-container {
+		width: 70%;
+	}
+}

@@ -7,7 +7,7 @@ const SideBar = ({ open, onClose, onLoginClick, onSignupClick, onLogoutClick, us
 		<div className={`${open && "sidebar-container"}`}>
 			<div className={`sidebar sidebar-${open ? "open" : "close"}`}>
 				<div className="sidebar-header">
-					<h1 className="brand">Blog App</h1>
+					<h1 className="brand">Blog Post</h1>
 					<span className="close" onClick={onClose}>
 						+
 					</span>

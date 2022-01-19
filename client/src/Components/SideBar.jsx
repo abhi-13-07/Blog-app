@@ -17,9 +17,15 @@ const SideBar = ({ open, onClose, onLoginClick, onSignupClick, onLogoutClick, us
 				</div>
 
 				<div className="sidebar-footer">
-					<Button label="Log-in" color="dark" size="sm" btnStyle="outline" />
+					<Button label="Log-in" color="dark" size="sm" btnStyle="outline" onClick={onLoginClick} />
 					<br />
-					<Button label="Sign-up" color="dark" size="sm" btnStyle="contained" />
+					<Button
+						label="Sign-up"
+						color="dark"
+						size="sm"
+						btnStyle="contained"
+						onClick={onSignupClick}
+					/>
 				</div>
 			</div>
 		</div>

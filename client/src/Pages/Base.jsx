@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header, NavBar } from "../Components";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../Hooks/useWindowWidth";
+import SideBar from "../Components/SideBar";
 
 const Base = ({ children }) => {
+	const [openSideBar, setOpenSideBar] = useState(false);
+	console.log(openSideBar);
+
 	const navigate = useNavigate();
 	const { width } = useWindowWidth();
 
@@ -26,9 +30,20 @@ const Base = ({ children }) => {
 				onLoginClick={handleLoginClick}
 				onSignupClick={handleSignupClick}
 				onLogoutClick={handleLogoutClick}
+				onMenuClick={() => setOpenSideBar(true)}
 			/>
 			<div className="section">
-				{width > 500 && <NavBar />}
+				{width > 500 ? (
+					<NavBar />
+				) : (
+					<SideBar
+						open={openSideBar}
+						onClose={() => setOpenSideBar(false)}
+						onLoginClick={handleLoginClick}
+						onSignupClick={handleSignupClick}
+						onLogoutClick={handleLogoutClick}
+					/>
+				)}
 				{children}
 			</div>
 		</div>

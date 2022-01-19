@@ -2,6 +2,7 @@
 @import "./shared/buttons.css";
 @import "./shared/Header.css";
 @import "./shared/Navbar.css";
+@import "./shared/Sidebar.css";
 
 body {
 	background-color: var(--background-color);

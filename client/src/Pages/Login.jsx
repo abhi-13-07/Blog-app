@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Button } from "../Components";
 import { Link } from "react-router-dom";
+import { useTitle } from "../Hooks/useTitle";
 
 const DEFAULT_CREDENTIALS = {
 	email: "",
@@ -10,6 +11,8 @@ const DEFAULT_CREDENTIALS = {
 const Login = () => {
 	const [credentials, setCredentials] = useState(DEFAULT_CREDENTIALS);
 	const passwordElementRef = useRef(null);
+
+	useTitle("Login");
 
 	const togglePasswordView = () => {
 		if (passwordElementRef.current.type === "password") {

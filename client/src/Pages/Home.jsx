@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Base from "./Base";
 import { useTitle } from "../Hooks/useTitle";
 
 const Home = () => {
-	useTitle("Blog App | Home");
+	const [openSlideBar, setOpenSlidBar] = useState(false);
+	useTitle("Home");
+
 	return (
 		<Base>
-			<h1>Home Page</h1>
+			<span>Home Page</span>
 		</Base>
 	);
 };

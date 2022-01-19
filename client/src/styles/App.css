@@ -1,6 +1,7 @@
 @import "./shared/variables.css";
 @import "./shared/buttons.css";
 @import "./shared/Header.css";
+@import "./shared/Navbar.css";
 
 body {
 	background-color: var(--background-color);
@@ -10,7 +11,10 @@ body {
 }
 
 .section {
-	padding: 0 50px 0 50px;
+	padding: 20px 50px 20px 50px;
+	display: flex;
+	align-items: flex-start;
+	gap: 5rem;
 }
 
 .centered {

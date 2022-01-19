@@ -1,0 +1,39 @@
+.navbar ul {
+	padding: 0;
+	margin: 0;
+}
+
+.navbar ul li {
+	list-style: none;
+}
+
+.nav-link i {
+	width: 20px;
+	text-align: center;
+}
+
+.nav-link {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 40px 0 40px 0;
+	text-decoration: none;
+	color: rgb(54, 54, 54);
+	font-size: 20px;
+}
+
+.nav-link:hover {
+	cursor: pointer;
+	color: black;
+	font-weight: bold;
+}
+
+.nav-link:first-child {
+	margin-top: 0;
+}
+
+.active {
+	color: black;
+	font-weight: bold;
+}

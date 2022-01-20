@@ -6,7 +6,6 @@ import SideBar from "../Components/SideBar";
 
 const Base = ({ children }) => {
 	const [openSideBar, setOpenSideBar] = useState(false);
-	console.log(openSideBar);
 
 	const navigate = useNavigate();
 	const { width } = useWindowWidth();
@@ -26,6 +25,7 @@ const Base = ({ children }) => {
 	return (
 		<div>
 			<Header
+				user={null}
 				width={width}
 				onLoginClick={handleLoginClick}
 				onSignupClick={handleSignupClick}
@@ -37,6 +37,7 @@ const Base = ({ children }) => {
 					<NavBar />
 				) : (
 					<SideBar
+						user={null}
 						open={openSideBar}
 						onClose={() => setOpenSideBar(false)}
 						onLoginClick={handleLoginClick}

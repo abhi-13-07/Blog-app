@@ -1,0 +1,34 @@
+.post-card {
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	margin-bottom: 15px;
+	max-width: 100%;
+}
+
+.post-card .user-details {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.post-title {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.post-card .tags-container .tag {
+	margin-right: 10px;
+	color: gray;
+	font-size: 18px;
+	cursor: pointer;
+	padding: 5px;
+	transition: 0.2s ease-in;
+	text-decoration: none;
+}
+
+.post-card .tags-container .tag:hover {
+	background-color: lightgray;
+	color: black;
+	border-radius: 5px;
+}

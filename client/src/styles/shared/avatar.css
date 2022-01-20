@@ -1,0 +1,19 @@
+.avatar {
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.avatar-sm {
+	height: 50px;
+	width: 50px;
+}
+
+.avatar-md {
+	height: 100px;
+	width: 100px;
+}
+
+.avatar-lg {
+	height: 200px;
+	width: 200px;
+}

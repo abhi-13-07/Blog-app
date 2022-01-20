@@ -1,8 +1,15 @@
 @import "./shared/variables.css";
 @import "./shared/buttons.css";
-@import "./shared/Header.css";
-@import "./shared/Navbar.css";
-@import "./shared/Sidebar.css";
+@import "./shared/header.css";
+@import "./shared/navbar.css";
+@import "./shared/sidebar.css";
+@import "./shared/avatar.css";
+@import "./shared/postcard.css";
+
+a {
+	text-decoration: none;
+	color: black;
+}
 
 body {
 	background-color: var(--background-color);
@@ -69,5 +76,11 @@ body {
 @media (max-width: 720px) {
 	.center-container {
 		width: 70%;
+	}
+}
+
+@media (max-width: 500px) {
+	.section {
+		gap: 0;
 	}
 }

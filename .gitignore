@@ -3,3 +3,7 @@
 /server/api/migrations
 /server/api/__pycache__
 /server/server/__pycache__
+/server/media/user_profiles
+/server/account/migrations
+/server/account/__pycache__
+/client

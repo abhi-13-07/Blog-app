@@ -3,8 +3,8 @@ import { apiBaseURL } from "./baseURL";
 
 const getData = async request => {
 	try {
-		const data = await request;
-		return { status: data.status, data };
+		const { status, data } = await request;
+		return { status, data };
 	} catch (err) {
 		const { response } = err || { response: null };
 		if (response) {

@@ -1,8 +1,8 @@
 import { get, post } from "./core";
 
-export const login = async ({ email, password }) => {
+export const login = async ({ username, password }) => {
 	try {
-		const { status, data } = await post("api/auth/login", { email, password });
+		const { status, data } = await post("auth/login/", { username, password });
 		return {
 			status,
 			data,
@@ -14,7 +14,7 @@ export const login = async ({ email, password }) => {
 
 export const register = async ({ username, email, password1, password2 }) => {
 	try {
-		const { status, data } = await post("api/auth/register", {
+		const { status, data } = await post("auth/register/", {
 			username,
 			email,
 			password1,
@@ -31,7 +31,7 @@ export const register = async ({ username, email, password1, password2 }) => {
 
 export const logout = async () => {
 	try {
-		const { status, data } = await get("api/auth/logout");
+		const { status, data } = await get("auth/logout/");
 		return {
 			status,
 			data,
@@ -41,9 +41,9 @@ export const logout = async () => {
 	}
 };
 
-export const refreshToken = async () => {
+export const refreshToken = async ({ refreshToken }) => {
 	try {
-		const { status, data } = await get("api/auth/refresh");
+		const { status, data } = await post("auth/refresh/", { refreshToken });
 		return {
 			status,
 			data,

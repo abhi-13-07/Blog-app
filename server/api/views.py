@@ -47,7 +47,7 @@ class PostUpdateAPIView(UpdateAPIView):
     lookup_url_kwarg = 'slug'
 
     def perform_update(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(author=self.request.user)
 
 class PostDeleteAPIView(DestroyAPIView):
     queryset = BlogPost.objects.all()

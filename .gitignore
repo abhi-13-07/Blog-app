@@ -6,3 +6,4 @@
 /server/media/user_profiles
 /server/account/migrations
 /server/account/__pycache__
+/client

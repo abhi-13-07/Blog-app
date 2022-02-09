@@ -9,6 +9,8 @@ import {
 	LOGOUT_REQUEST,
 	LOGOUT_SUCCESS,
 	LOGOUT_FAILURE,
+	REFRESH_ACCESS_TOKEN_SUCCESS,
+	REFRESH_ACCESS_TOKEN_FAILURE,
 } from "../Constants/authConstants";
 
 const initialAuthState = {
@@ -35,7 +37,15 @@ export const authReducer = (state = initialAuthState, { type, payload }) => {
 				user: payload.user,
 				expiresIn,
 				loading: false,
-				error: false,
+				error: null,
+			};
+		case REFRESH_ACCESS_TOKEN_SUCCESS:
+			console.log("Payload", payload);
+			return {
+				...state,
+				user: payload.user,
+				accessToken: payload.access,
+				expiresIn: jwtDecode(payload.access).exp,
 			};
 		case LOGIN_FAILURE:
 		case SIGNUP_FAILURE:
@@ -46,6 +56,7 @@ export const authReducer = (state = initialAuthState, { type, payload }) => {
 				error: payload,
 			};
 		case LOGOUT_SUCCESS:
+		case REFRESH_ACCESS_TOKEN_FAILURE:
 			return initialAuthState;
 		default:
 			return state;

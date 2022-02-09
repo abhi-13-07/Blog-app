@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Header, NavBar } from "../Components";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useWindowWidth } from "../Hooks/useWindowWidth";
+import { logoutUser } from "../Actions/authAction";
 import SideBar from "../Components/SideBar";
 
 const Base = ({ children }) => {
 	const [openSideBar, setOpenSideBar] = useState(false);
 	const { user } = useSelector(state => state.auth);
+	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
 	const { width } = useWindowWidth();
@@ -21,7 +23,7 @@ const Base = ({ children }) => {
 	};
 
 	const handleLogoutClick = () => {
-		navigate("/login");
+		dispatch(logoutUser());
 	};
 
 	return (

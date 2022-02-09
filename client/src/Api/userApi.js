@@ -1,8 +1,10 @@
 import { get } from "./core";
 
-export const getUser = async id => {
+export const getUser = async (id, accessToken) => {
 	try {
-		const { status, data } = await get(``);
+		const { status, data } = await get(`user/${id}`, {
+			Authorization: `Bearer ${accessToken}`,
+		});
 		return {
 			status,
 			data,

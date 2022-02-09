@@ -29,9 +29,9 @@ export const register = async ({ username, email, password1, password2 }) => {
 	}
 };
 
-export const logout = async () => {
+export const logout = async refresh => {
 	try {
-		const { status, data } = await get("auth/logout/");
+		const { status, data } = await post("auth/logout/", { refresh });
 		return {
 			status,
 			data,
@@ -41,9 +41,9 @@ export const logout = async () => {
 	}
 };
 
-export const refreshToken = async ({ refreshToken }) => {
+export const refreshToken = async ({ refresh }) => {
 	try {
-		const { status, data } = await post("auth/refresh/", { refreshToken });
+		const { status, data } = await post("auth/refresh/", { refresh });
 		return {
 			status,
 			data,

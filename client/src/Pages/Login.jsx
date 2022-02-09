@@ -12,7 +12,7 @@ const DEFAULT_CREDENTIALS = {
 
 const Login = () => {
 	const [credentials, setCredentials] = useState(DEFAULT_CREDENTIALS);
-	const { accessToken, user, loading } = useSelector(state => state.auth);
+	const { loading, error } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
 
 	const { username, password } = credentials;
@@ -35,6 +35,9 @@ const Login = () => {
 		<div className="centered">
 			<div className="center-container bg-white">
 				<h1>Login</h1>
+				<div className="error">
+					<p>{error && error.detail}</p>
+				</div>
 				<form className="form" onSubmit={handleSubmit}>
 					<div className="field">
 						<label>Username</label>

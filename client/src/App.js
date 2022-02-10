@@ -12,7 +12,7 @@ import { refreshAccessToken } from "./Actions/authAction";
 
 const App = () => {
 	const [loading, setLoading] = useState(false);
-	// const { accessToken, error } = useSelector(state => state.auth);
+	const { expiresIn } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
 
 	// refresh AccessToken;
@@ -20,6 +20,20 @@ const App = () => {
 		setLoading(true);
 		dispatch(refreshAccessToken(() => setLoading(false)));
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (!expiresIn) return;
+
+		let refreshInterval = expiresIn * 1000 - Date.now();
+
+		const interval = setInterval(() => {
+			dispatch(refreshAccessToken());
+		}, refreshInterval - 60000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, [expiresIn, dispatch]);
 
 	return (
 		<div>

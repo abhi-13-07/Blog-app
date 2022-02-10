@@ -1,4 +1,4 @@
-import { get, post } from "./core";
+import { post } from "./core";
 
 export const login = async ({ username, password }) => {
 	try {

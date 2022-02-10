@@ -78,7 +78,6 @@ export const refreshAccessToken = callback => async dispatch => {
 			return;
 		}
 		const { status, data } = await refreshToken({ refresh });
-		console.log("refresh data", data);
 
 		if (status === 200) {
 			localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh);
@@ -102,9 +101,7 @@ export const refreshAccessToken = callback => async dispatch => {
 async function getUserInfo(accessToken) {
 	let user = null;
 	try {
-		console.log(accessToken);
 		const { user_id: id } = jwtDecode(accessToken);
-		console.log(id);
 		const { data, status } = await getUser(id, accessToken);
 		if (status === 200) {
 			user = data;

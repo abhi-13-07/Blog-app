@@ -2,14 +2,14 @@ import jwt, datetime
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView, GenericAPIView
-from account.serializers import UserRegisterSerializer, UploadProfileSerializer, UserLoginSerializer, UserDetailsSerializer, LogoutSerializer
+from account.serializers import UserRegisterSerializer, UserLoginSerializer, UserDetailsSerializer, LogoutSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import permissions
-from account.serializers import User
-
+# from account.serializers import User
+from .models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -75,10 +75,12 @@ class LoginAPIView(APIView):
         response = Response()
         response.set_cookie(key='Token', value=token, httponly=True)
         response.data = {
-            'token' : token,
-            'refresh_token' : refresh_token,
-            'username' : user.username,
-            'email' : user.email
+            'access' : token,
+            'refresh': refresh_token,
+            'user': {
+                'username' : user.username,
+                'email' : user.email
+            }    
         }
         return response
 
@@ -93,9 +95,8 @@ class LoginRefreshAPIView(APIView):
         response = Response()
         response.set_cookie(key='Token', value=token, httponly=True)
         response.data = {
-            'Token' : token,
-            'username' : user.username,
-            'email' : user.email
+            'access' : token,
+            'refresh': refresh_token,
         }
         return response
 
@@ -154,13 +155,13 @@ class LogoutAPIView(GenericAPIView):
         #     return Response(status=status.HTTP_400_BAD_REQUEST)
         
 
-class ProfileAPIView(APIView):
-    serializer_class = UploadProfileSerializer
+# class ProfileAPIView(APIView):
+#     serializer_class = UploadProfileSerializer
 
-    def post(self, request, format=None):
-        serializer = self.serializer_class(data=request.data, context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, format=None):
+#         serializer = self.serializer_class(data=request.data, context={'request': request})
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

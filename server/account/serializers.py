@@ -1,11 +1,8 @@
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Profile
-
-User = get_user_model()
+from .models import User
 
 class UserRegisterSerializer(serializers.ModelSerializer):
 
@@ -15,10 +12,16 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
+            'first_name',
+            'last_name',
             'username',
             'email',
             'password1',
-            'password2'
+            'password2',
+            'birth_date',
+            'city',
+            'country',
+            'profile_image'
         ]
         extra_kwargs = {
             'password1' : {'write_only' : True},
@@ -39,9 +42,19 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValueError({
                 'error' : "Both passwords doesn't match each other !"
             })
-        return super().create(validated_data)
 
-from django.contrib.auth.models import User
+    def get_cleaned_data(self):
+        return {
+            'first_name': self.validated_data.get('first_name', ''),
+            'last_name': self.validated_data.get('last_name', ''),
+            'username': self.validated_data.get('username', ''),
+            'email': self.validated_data.get('email', ''),
+            'password1': self.validated_data.get('password', ''),
+            'birth_date': self.validated_data.get('birth_date', ''),
+            'city': self.validated_data.get('city', ''),
+            'country': self.validated_data.get('country', ''),
+            'profile_image' : self.validated_data.get('profile_image', '')
+        }
 
 class UserLoginSerializer(serializers.ModelSerializer):
 
@@ -73,20 +86,22 @@ class LogoutSerializer(serializers.Serializer):
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-class UploadProfileSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
-    class Meta:
-        model = Profile
-        fields = ['user', 'image']
+# class UploadProfileSerializer(serializers.ModelSerializer):
+#     user = serializers.SerializerMethodField()
+#     class Meta:
+#         model = Profle
+#         fields = ['user', 'image']
 
-    def get_user(self, obj):
-        obj = User.objects.get(User.id)
-        return str(obj.user.image)
+#     def get_user(self, obj):
+#         obj = User.objects.get(User.id)
+#         return str(obj.user.image)
 
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
+            'id',
             'username',
             'email',
+            'profile_image'
         ]

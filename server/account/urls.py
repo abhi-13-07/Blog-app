@@ -15,5 +15,5 @@ urlpatterns = [
     path('api/auth/logout/', LogoutAPIView.as_view(), name='logout'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/auth/register/', RegisterAPIView.as_view(), name="register"),
-    # path('api/user/upload/', ProfileAPIView.as_view(), name="profile"),
+    path('api/user/upload/', ProfileAPIView.as_view(), name="profile"),
 ]

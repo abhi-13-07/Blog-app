@@ -76,11 +76,11 @@ class LoginAPIView(APIView):
         response.set_cookie(key='Token', value=token, httponly=True)
         response.data = {
             'access' : token,
-            'refresh': refresh_token,
+            'refresh' : refresh_token,
             'user': {
-                'username' : user.username,
-                'email' : user.email
-            }    
+                'username': user.username,
+                'email': user.email
+            }
         }
         return response
 

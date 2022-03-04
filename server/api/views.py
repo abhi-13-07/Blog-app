@@ -9,7 +9,7 @@ from rest_framework import permissions
 
 class PostListAPIView(APIView):
     serializer_class = BlogListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, slug):
         try:

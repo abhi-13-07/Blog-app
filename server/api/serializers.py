@@ -1,16 +1,26 @@
+import profile
 from .models import BlogPost
-from django.db.models import fields
+from account.models import User
 from rest_framework import serializers
-from datetime import datetime
+from account.serializers import UserDetailsSerializer
+from rest_framework.serializers import SerializerMethodField
 
 
 class BlogListSerializer(serializers.ModelSerializer):
     date_published = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
     date_updated = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    user_details = serializers.SerializerMethodField('get_author_details')
 
     class Meta:
         model = BlogPost
-        fields = ['id', 'title', 'date_published', 'date_updated', 'author', 'slug']
+        fields = ['id', 'title', 'date_published', 'date_updated', 'user', 'user_details', 'slug']
+
+    def get_author_details(self, blog_post):
+        user_details = {
+        'username' : blog_post.user.username,
+        'profile_image' : str(blog_post.user.profile_image)
+        }
+        return user_details
 
 class BlogDetailsSerializer(serializers.ModelSerializer):
     date_published = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
@@ -18,23 +28,23 @@ class BlogDetailsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = BlogPost
-        fields = ['id', 'title', 'body', 'date_published', 'date_updated', 'author', 'slug']
+        fields = ['id', 'title', 'body', 'date_published', 'date_updated', 'user', 'slug']
 
 
 class BlogCreateSerializer(serializers.ModelSerializer):
-    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = BlogPost
         fields = '__all__'
 
 class BlogUpdateSerializer(serializers.ModelSerializer):
-    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = BlogPost
-        fields = '__all__'
+        fields = ['id', 'title', 'body', 'user', 'slug']
 
 class BlogDeleteSerializer(serializers.ModelSerializer):
-    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = BlogPost
         fields = '__all__'

@@ -53,7 +53,8 @@ REST_FRAMEWORK = {
      ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    #'USER_DETAIL_SERIALIZER' : 'account.serializers.UserDetailsSerializer',
  }
 
 ROOT_URLCONF = 'server.urls'
@@ -163,5 +164,7 @@ MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+AUTH_USER_MODEL = 'account.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

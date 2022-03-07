@@ -4,14 +4,19 @@ import { Avatar } from "../Components";
 import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
-	const user = post.createdBy;
+	const user = post.user;
+	const userDetails = post.user_details;
+	const defaultProfilePic = process.env.REACT_APP_DEFAULT_USER_IMAGE;
+
+	const userProfilePic =
+		userDetails.profile_image === "default.jpg" ? defaultProfilePic : userDetails.profile_image;
 
 	return (
 		<div className="post-card">
 			<div>
-				<Link to={`users/${user.id}`} className="user-details">
-					<Avatar src={user.displayPicture} alt={user.firstname} size="sm" />
-					<span>{`${user.firstname} ${user?.lastname}`}</span>
+				<Link to={`users/${user}`} className="user-details">
+					<Avatar src={userProfilePic} alt={userDetails.username} size="sm" />
+					<span>{userDetails.username}</span>
 				</Link>
 			</div>
 			<div>
@@ -20,7 +25,7 @@ const PostCard = ({ post }) => {
 				</Link>
 			</div>
 			<div className="tags-container">
-				{post.tags.map(tag => (
+				{post.tags?.map(tag => (
 					<Link className="tag" key={tag?.id || tag} to={`/tags/${tag}`}>
 						<small key={tag.id}>#{tag}</small>
 					</Link>

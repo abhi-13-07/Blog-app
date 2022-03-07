@@ -1,11 +1,11 @@
 import { get } from "./core";
-import store from "../store";
+// import store from "../store";
 
-const { accessToken } = store.getState().auth;
+// const { accessToken } = store.getState().auth;
 
 export const getPosts = async () => {
 	try {
-		const { data, status } = await get("/home/", { Authorization: `Bearer ${accessToken}` });
+		const { data, status } = await get("home/");
 		return {
 			data,
 			status,
@@ -13,4 +13,8 @@ export const getPosts = async () => {
 	} catch (err) {
 		console.clear();
 	}
+};
+
+export const newPost = async ({ title, body }) => {
+	//
 };

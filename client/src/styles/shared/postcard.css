@@ -6,6 +6,11 @@
 	max-width: 100%;
 }
 
+.post-card a {
+	text-decoration: none;
+	color: var(--dark-color);
+}
+
 .post-card .user-details {
 	display: flex;
 	align-items: center;

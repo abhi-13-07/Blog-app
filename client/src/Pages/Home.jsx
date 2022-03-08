@@ -3,7 +3,7 @@ import Base from "./Base";
 import { useTitle } from "../Hooks/useTitle";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchHomeFeed } from "../Actions/postAction";
-import { PostCard } from "../Components";
+import { PostCard, SearchBar } from "../Components";
 
 const Home = () => {
 	const { posts, loading, error } = useSelector(state => state.homeFeed);
@@ -12,12 +12,14 @@ const Home = () => {
 	useTitle("Home");
 
 	useEffect(() => {
+		if (posts.length > 0) return;
 		dispatch(fetchHomeFeed());
-	}, [dispatch]);
+	}, [dispatch, posts.length]);
 
 	return (
 		<Base>
 			<div style={{ minWidth: "80%" }}>
+				<SearchBar />
 				{error ? (
 					<h3>{error}</h3>
 				) : loading ? (

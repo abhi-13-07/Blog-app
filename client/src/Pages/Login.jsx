@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../Components";
+import { Button, Input } from "../Components";
 import { Link } from "react-router-dom";
 import { useTitle } from "../Hooks/useTitle";
 import { loginUser } from "../Actions/authAction";
@@ -41,7 +41,7 @@ const Login = () => {
 				<form className="form" onSubmit={handleSubmit}>
 					<div className="field">
 						<label>Username</label>
-						<input
+						<Input
 							type="text"
 							name="username"
 							value={credentials.username}
@@ -50,7 +50,7 @@ const Login = () => {
 					</div>
 					<div className="field">
 						<label>Password</label>
-						<input
+						<Input
 							type="password"
 							name="password"
 							value={credentials.password}

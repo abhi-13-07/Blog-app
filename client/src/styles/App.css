@@ -79,6 +79,21 @@ body {
 	color: var(--danger-color);
 }
 
+.search-bar {
+	width: 100%;
+}
+
+.search-bar input {
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+	height: 45px;
+	font-size: 16px;
+	padding-left: 5px;
+}
+
 @media (max-width: 720px) {
 	.center-container {
 		width: 70%;

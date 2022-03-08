@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Button } from "../Components";
+import { Button, Input } from "../Components";
 import { Link, useNavigate } from "react-router-dom";
 import { useTitle } from "../Hooks/useTitle";
 import { signup } from "../Actions/authAction";
@@ -43,7 +43,7 @@ const Signup = () => {
 				<form className="form" onSubmit={handleSubmit}>
 					<div className="field">
 						<label>Username</label>
-						<input
+						<Input
 							type="text"
 							placeholder="eg: abc"
 							name="username"
@@ -55,7 +55,7 @@ const Signup = () => {
 					</div>
 					<div className="field">
 						<label>Email</label>
-						<input
+						<Input
 							type="email"
 							placeholder="eg: abc@test.com"
 							name="email"
@@ -67,7 +67,7 @@ const Signup = () => {
 					</div>
 					<div className="field">
 						<label>Password</label>
-						<input
+						<Input
 							type="password"
 							name="password1"
 							ref={passwordElementRef}
@@ -79,7 +79,7 @@ const Signup = () => {
 					</div>
 					<div className="field">
 						<label>Confirm Password</label>
-						<input
+						<Input
 							type="password"
 							name="password2"
 							ref={confirmPasswordElementRef}

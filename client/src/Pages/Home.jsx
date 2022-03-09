@@ -18,7 +18,7 @@ const Home = () => {
 
 	return (
 		<Base>
-			<div style={{ minWidth: "80%" }}>
+			<div style={{ width: "100%" }}>
 				<SearchBar />
 				{error ? (
 					<h3>{error}</h3>

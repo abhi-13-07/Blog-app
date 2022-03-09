@@ -7,9 +7,13 @@
 	list-style: none;
 }
 
-.nav-link i {
+.nav-link div {
 	width: 20px;
 	text-align: center;
+}
+
+.nav-link span {
+	width: 150px;
 }
 
 .nav-link {

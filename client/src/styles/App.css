@@ -100,8 +100,9 @@ body {
 	}
 }
 
-@media (max-width: 500px) {
+@media (max-width: 540px) {
 	.section {
 		gap: 0;
+		padding: 20px;
 	}
 }

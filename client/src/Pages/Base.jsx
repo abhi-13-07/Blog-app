@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header, NavBar } from "../Components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,12 @@ const Base = ({ children }) => {
 
 	const navigate = useNavigate();
 	const { width } = useWindowWidth();
+
+	useEffect(() => {
+		if (width > 540) {
+			setOpenSideBar(false);
+		}
+	}, [width]);
 
 	const handleLoginClick = () => {
 		navigate("/login");
@@ -37,7 +43,7 @@ const Base = ({ children }) => {
 				onMenuClick={() => setOpenSideBar(true)}
 			/>
 			<div className="section">
-				{width > 500 ? (
+				{width > 540 ? (
 					<NavBar />
 				) : (
 					<SideBar

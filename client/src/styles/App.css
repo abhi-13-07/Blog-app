@@ -5,6 +5,7 @@
 @import "./shared/sidebar.css";
 @import "./shared/avatar.css";
 @import "./shared/postcard.css";
+@import "./shared/input.css";
 
 /* a {
 	text-decoration: none;

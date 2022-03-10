@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const Input = React.forwardRef(({ type, placeholder, onChange, disabled, value, ...rest }, ref) => {
 	return (
 		<input
+			className="input"
 			ref={ref}
 			type={type}
 			placeholder={placeholder}

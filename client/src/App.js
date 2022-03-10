@@ -7,8 +7,10 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import RestrictAuth from "./Routes/RestrictAuth";
+import PrivateRoute from "./Routes/PrivateRoutes";
 
 import { refreshAccessToken } from "./Actions/authAction";
+import NewPost from "./Pages/NewPost";
 
 const App = () => {
 	const [loading, setLoading] = useState(false);
@@ -56,6 +58,14 @@ const App = () => {
 							<RestrictAuth>
 								<Signup />
 							</RestrictAuth>
+						}
+					/>
+					<Route
+						path="/posts/new"
+						element={
+							<PrivateRoute>
+								<NewPost />
+							</PrivateRoute>
 						}
 					/>
 				</Routes>

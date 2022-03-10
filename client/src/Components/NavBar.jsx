@@ -25,7 +25,7 @@ const NavBar = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to="/saved" className="nav-link">
+					<Link to="/saved" className={`nav-link ${isActive("/saved") && `active`}`}>
 						<div>
 							<Icon icon="fa-solid fa-bookmark fa-lg" />
 						</div>
@@ -33,7 +33,7 @@ const NavBar = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to="/me" className="nav-link">
+					<Link to="/me" className={`nav-link ${isActive("/me") && `active`}`}>
 						<div>
 							<Icon icon="fa-solid fa-user fa-lg" />
 						</div>
@@ -41,7 +41,7 @@ const NavBar = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to="/posts/new" className="nav-link">
+					<Link to="/posts/new" className={`nav-link ${isActive("/posts/new") && `active`}`}>
 						<Icon icon="fa-solid fa-plus fa-lg" />
 						{canShowLabel && <span>New Post</span>}
 					</Link>

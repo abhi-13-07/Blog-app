@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ label, btnStyle, size, color, disabled, onClick, ...rest }) => {
+const Button = ({ label, btnStyle, size, color, disabled, onClick, children, ...rest }) => {
 	return (
 		<button
 			className={`btn btn-${size} btn-${color}-${btnStyle}`}
@@ -9,7 +9,7 @@ const Button = ({ label, btnStyle, size, color, disabled, onClick, ...rest }) =>
 			disabled={disabled}
 			{...rest}
 		>
-			{label}
+			{children ? children : label}
 		</button>
 	);
 };

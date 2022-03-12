@@ -1,35 +1,51 @@
-import { useState } from "react";
-import { Button, Input } from "../Components";
+import { useSelector, useDispatch } from "react-redux";
+import { Button } from "../Components";
 import Base from "./Base";
-import MDEditor from "@uiw/react-md-editor";
 import Icon from "../Components/Icon";
+import CreatePost from "../Components/CreatePost";
+import { POST_FIELD_CHANGE } from "../Constants/postConstants";
+import { addNewPost } from "../Actions/postAction";
+import { useNavigate } from "react-router-dom";
 
 const NewPost = () => {
-	const [title, setTitle] = useState("");
-	const [body, setBody] = useState("");
+	const { title, body, loading, error } = useSelector(state => state.post);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const handleChange = (name, value) => {
+		dispatch({ type: POST_FIELD_CHANGE, payload: { [name]: value } });
+	};
+
+	const handleSubmit = e => {
+		dispatch(
+			addNewPost({ title, body }, () => {
+				navigate("/");
+			})
+		);
+	};
+
+	if (error) {
+		return <pre>{JSON.stringify(error, null, 4)}</pre>;
+	}
 
 	return (
 		<Base>
 			<div style={{ width: "100%" }}>
-				<div className="field">
-					<label>Title</label>
-					<Input
-						type="text"
-						placeholder="Title"
-						onChange={e => setTitle(e.target.value)}
-						value={title}
-					/>
+				<CreatePost title={title} body={body} onChange={handleChange} />
+				<div>
+					<Button
+						size="md"
+						color="primary"
+						btnStyle="contained"
+						disabled={loading}
+						onClick={handleSubmit}
+					>
+						<div>
+							{!loading && <Icon icon="fa-solid fa-plus" />}
+							<span style={{ marginLeft: "5px" }}>{!loading ? "Add" : "Publishing..."}</span>
+						</div>
+					</Button>
 				</div>
-				<div className="field">
-					<label>Body</label>
-					<MDEditor value={body} onChange={setBody} />
-				</div>
-				<Button size="md" color="primary" btnStyle="contained">
-					<div>
-						<Icon icon="fa-solid fa-plus" />
-						<span style={{ marginLeft: "5px" }}>Add</span>
-					</div>
-				</Button>
 			</div>
 		</Base>
 	);

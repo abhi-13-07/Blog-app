@@ -12,9 +12,8 @@ const Home = () => {
 	useTitle("Home");
 
 	useEffect(() => {
-		if (posts.length > 0) return;
 		dispatch(fetchHomeFeed());
-	}, [dispatch, posts.length]);
+	}, [dispatch]);
 
 	return (
 		<Base>

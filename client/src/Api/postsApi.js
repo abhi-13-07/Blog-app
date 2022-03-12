@@ -1,7 +1,4 @@
-import { get } from "./core";
-// import store from "../store";
-
-// const { accessToken } = store.getState().auth;
+import { get, post } from "./core";
 
 export const getPosts = async () => {
 	try {
@@ -15,6 +12,21 @@ export const getPosts = async () => {
 	}
 };
 
-export const newPost = async ({ title, body }) => {
-	//
+export const newPost = async ({ title, body }, accessToken) => {
+	try {
+		const { data, status } = await post(
+			"create/",
+			{
+				title,
+				body,
+			},
+			{ Authorization: `Bearer ${accessToken}` }
+		);
+		return {
+			data,
+			status,
+		};
+	} catch (err) {
+		console.clear();
+	}
 };

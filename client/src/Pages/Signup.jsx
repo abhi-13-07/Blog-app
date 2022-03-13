@@ -33,7 +33,7 @@ const Signup = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		dispatch(signup(credentials, () => navigate("/")));
+		dispatch(signup(credentials, () => navigate(-1)));
 	};
 
 	return (

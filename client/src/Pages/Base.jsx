@@ -29,7 +29,7 @@ const Base = ({ children }) => {
 	};
 
 	const handleLogoutClick = () => {
-		dispatch(logoutUser());
+		dispatch(logoutUser(() => navigate("/")));
 	};
 
 	return (

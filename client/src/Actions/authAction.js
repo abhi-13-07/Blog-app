@@ -26,7 +26,9 @@ export const loginUser = (credentials, onSuccess) => async dispatch => {
 		if (status === 200) {
 			localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh);
 			dispatch({ type: LOGIN_SUCESS, payload: data });
+			console.log("Calling onSuccess");
 			onSuccess && onSuccess();
+			console.log("Called onSuccess");
 			return;
 		}
 		return dispatch({ type: LOGIN_FAILURE, payload: data });
@@ -42,6 +44,7 @@ export const signup = (credentials, onSuccess) => async dispatch => {
 		if (status === 201) {
 			localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh);
 			dispatch({ type: SIGNUP_SUCESS, payload: data });
+			console.log("Calling onSuccess");
 			onSuccess && onSuccess();
 			return;
 		}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Input } from "../Components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTitle } from "../Hooks/useTitle";
 import { loginUser } from "../Actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,7 @@ const Login = () => {
 	const [credentials, setCredentials] = useState(DEFAULT_CREDENTIALS);
 	const { loading, error } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const { username, password } = credentials;
 	const isEmptyForm = !username || !password;
@@ -28,7 +29,7 @@ const Login = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		dispatch(loginUser(credentials));
+		dispatch(loginUser(credentials, () => navigate(-1)));
 	};
 
 	return (

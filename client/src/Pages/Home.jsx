@@ -6,14 +6,16 @@ import { fetchHomeFeed } from "../Actions/postAction";
 import { PostCard, SearchBar } from "../Components";
 
 const Home = () => {
-	const { posts, loading, error } = useSelector(state => state.homeFeed);
+	const { posts, loading, error, reload } = useSelector(state => state.homeFeed);
 	const dispatch = useDispatch();
 
 	useTitle("Home");
 
 	useEffect(() => {
-		dispatch(fetchHomeFeed());
-	}, [dispatch]);
+		if (reload || posts.length <= 0) {
+			dispatch(fetchHomeFeed());
+		}
+	}, [dispatch, posts.length, reload]);
 
 	return (
 		<Base>

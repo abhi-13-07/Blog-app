@@ -3,7 +3,7 @@ import { Button } from "../Components";
 import Base from "./Base";
 import Icon from "../Components/Icon";
 import CreatePost from "../Components/CreatePost";
-import { POST_FIELD_CHANGE } from "../Constants/postConstants";
+import { POST_FIELD_CHANGE, HOME_FEED_RELOAD } from "../Constants/postConstants";
 import { addNewPost } from "../Actions/postAction";
 import { useNavigate } from "react-router-dom";
 
@@ -19,6 +19,7 @@ const NewPost = () => {
 	const handleSubmit = e => {
 		dispatch(
 			addNewPost({ title, body }, () => {
+				dispatch({ type: HOME_FEED_RELOAD });
 				navigate("/");
 			})
 		);

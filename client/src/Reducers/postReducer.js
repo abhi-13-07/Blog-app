@@ -6,18 +6,21 @@ import {
 	POST_SUBMIT_FAILURE,
 	POST_SUBMIT_SUCCESS,
 	POST_SUBMIT_REQUEST,
+	HOME_FEED_RELOAD,
 } from "../Constants/postConstants";
 
-const initialHomeState = { posts: [], loading: false, error: null };
+const initialHomeState = { posts: [], loading: false, error: null, reload: false };
 
 export const homeFeedReducer = (state = initialHomeState, { type, payload }) => {
 	switch (type) {
 		case HOME_FEED_REQUEST:
 			return { ...state, loading: true };
 		case HOME_FEED_SUCCESS:
-			return { ...state, loading: false, posts: payload, error: null };
+			return { ...state, loading: false, posts: payload, error: null, reload: false };
 		case HOME_FEED_FAILURE:
-			return { ...state, loading: false, error: payload, posts: [] };
+			return { ...state, loading: false, error: payload, posts: [], reload: false };
+		case HOME_FEED_RELOAD:
+			return { ...state, reload: !state.reload };
 		default:
 			return state;
 	}

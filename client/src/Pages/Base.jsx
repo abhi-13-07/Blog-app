@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header, NavBar } from "../Components";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useWindowWidth } from "../Hooks/useWindowWidth";
+import { logoutUser } from "../Actions/authAction";
 import SideBar from "../Components/SideBar";
 
 const Base = ({ children }) => {
 	const [openSideBar, setOpenSideBar] = useState(false);
+	const { user } = useSelector(state => state.auth);
+	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
 	const { width } = useWindowWidth();
+
+	useEffect(() => {
+		if (width > 540) {
+			setOpenSideBar(false);
+		}
+	}, [width]);
 
 	const handleLoginClick = () => {
 		navigate("/login");
@@ -19,13 +29,13 @@ const Base = ({ children }) => {
 	};
 
 	const handleLogoutClick = () => {
-		navigate("/login");
+		dispatch(logoutUser());
 	};
 
 	return (
 		<div>
 			<Header
-				user={null}
+				user={user}
 				width={width}
 				onLoginClick={handleLoginClick}
 				onSignupClick={handleSignupClick}
@@ -33,11 +43,11 @@ const Base = ({ children }) => {
 				onMenuClick={() => setOpenSideBar(true)}
 			/>
 			<div className="section">
-				{width > 500 ? (
+				{width > 540 ? (
 					<NavBar />
 				) : (
 					<SideBar
-						user={null}
+						user={user}
 						open={openSideBar}
 						onClose={() => setOpenSideBar(false)}
 						onLoginClick={handleLoginClick}

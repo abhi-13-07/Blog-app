@@ -5,11 +5,12 @@
 @import "./shared/sidebar.css";
 @import "./shared/avatar.css";
 @import "./shared/postcard.css";
+@import "./shared/input.css";
 
-a {
+/* a {
 	text-decoration: none;
 	color: black;
-}
+} */
 
 body {
 	background-color: var(--background-color);
@@ -73,14 +74,36 @@ body {
 	font-size: 16px;
 }
 
+.field p {
+	margin: 0;
+	padding: 5px 0 5px 0;
+	color: var(--danger-color);
+}
+
+.search-bar {
+	width: 100%;
+}
+
+.search-bar input {
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+	height: 45px;
+	font-size: 16px;
+	padding-left: 5px;
+}
+
 @media (max-width: 720px) {
 	.center-container {
 		width: 70%;
 	}
 }
 
-@media (max-width: 500px) {
+@media (max-width: 540px) {
 	.section {
 		gap: 0;
+		padding: 20px;
 	}
 }

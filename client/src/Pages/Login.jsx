@@ -1,26 +1,24 @@
-import { useState, useRef } from "react";
-import { Button } from "../Components";
+import { useState } from "react";
+import { Button, Input } from "../Components";
 import { Link } from "react-router-dom";
 import { useTitle } from "../Hooks/useTitle";
+import { loginUser } from "../Actions/authAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const DEFAULT_CREDENTIALS = {
-	email: "",
+	username: "",
 	password: "",
 };
 
 const Login = () => {
 	const [credentials, setCredentials] = useState(DEFAULT_CREDENTIALS);
-	const passwordElementRef = useRef(null);
+	const { loading, error } = useSelector(state => state.auth);
+	const dispatch = useDispatch();
+
+	const { username, password } = credentials;
+	const isEmptyForm = !username || !password;
 
 	useTitle("Login");
-
-	const togglePasswordView = () => {
-		if (passwordElementRef.current.type === "password") {
-			passwordElementRef.current.type = "text";
-		} else {
-			passwordElementRef.current.type = "password";
-		}
-	};
 
 	const handleChange = e => {
 		const name = e.target.name;
@@ -28,33 +26,44 @@ const Login = () => {
 		setCredentials(prev => ({ ...prev, [name]: value }));
 	};
 
+	const handleSubmit = e => {
+		e.preventDefault();
+		dispatch(loginUser(credentials));
+	};
+
 	return (
 		<div className="centered">
 			<div className="center-container bg-white">
 				<h1>Login</h1>
-				<form className="form">
+				<div className="error">
+					<p>{error && error.detail}</p>
+				</div>
+				<form className="form" onSubmit={handleSubmit}>
 					<div className="field">
-						<label>Email</label>
-						<input
-							type="email"
-							placeholder="eg: abc@test.com"
-							name="email"
-							value={credentials.email}
+						<label>Username</label>
+						<Input
+							type="text"
+							name="username"
+							value={credentials.username}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className="field">
 						<label>Password</label>
-						<input
+						<Input
 							type="password"
 							name="password"
-							ref={passwordElementRef}
 							value={credentials.password}
 							onChange={handleChange}
 						/>
-						<span onClick={togglePasswordView}>Show Password</span>
 					</div>
-					<Button label="Login" color="dark" btnStyle="contained" size="block" />
+					<Button
+						label="Login"
+						color="dark"
+						btnStyle="contained"
+						size="block"
+						disabled={isEmptyForm || loading}
+					/>
 				</form>
 			</div>
 			<div>

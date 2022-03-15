@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "./index";
 
 const Header = ({ user, width, onLoginClick, onSignupClick, onLogoutClick, onMenuClick }) => {
-	const isMobileView = width <= 500;
+	const isMobileView = width <= 540;
 
 	return (
 		<header className="header">
@@ -35,13 +35,16 @@ const Header = ({ user, width, onLoginClick, onSignupClick, onLogoutClick, onMen
 							/>
 						</>
 					) : (
-						<Button
-							label="Logout"
-							color="dark"
-							btnStyle="outline"
-							size="sm"
-							onClick={onLogoutClick}
-						/>
+						<div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+							<span>Hello, {user.username}</span>
+							<Button
+								label="Logout"
+								color="dark"
+								btnStyle="outline"
+								size="sm"
+								onClick={onLogoutClick}
+							/>
+						</div>
 					)}
 				</div>
 			)}

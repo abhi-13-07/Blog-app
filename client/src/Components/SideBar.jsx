@@ -57,6 +57,7 @@ SideBar.propTypes = {
 	onSignupClick: PropTypes.func,
 	onLogoutClick: PropTypes.func,
 	user: PropTypes.object,
+	width: PropTypes.number,
 };
 
 export default SideBar;

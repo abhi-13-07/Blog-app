@@ -7,16 +7,20 @@
 	list-style: none;
 }
 
-.nav-link i {
+.nav-link div {
 	width: 20px;
 	text-align: center;
+}
+
+.nav-link span {
+	width: 150px;
 }
 
 .nav-link {
 	list-style: none;
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 15px;
 	margin: 40px 0 40px 0;
 	text-decoration: none;
 	color: rgb(54, 54, 54);

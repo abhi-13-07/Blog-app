@@ -51,7 +51,7 @@ const Signup = () => {
 							onChange={handleChange}
 							disabled={loading}
 						/>
-						{error?.username && <p>{error.username[0]}</p>}
+						{error?.username && <p className="error">{error.username[0]}</p>}
 					</div>
 					<div className="field">
 						<label>Email</label>
@@ -63,7 +63,7 @@ const Signup = () => {
 							onChange={handleChange}
 							disabled={loading}
 						/>
-						{error?.email && <p>{error.email[0]}</p>}
+						{error?.email && <p className="error">{error.email[0]}</p>}
 					</div>
 					<div className="field">
 						<label>Password</label>
@@ -75,7 +75,7 @@ const Signup = () => {
 							onChange={handleChange}
 							disabled={loading}
 						/>
-						{error?.password1 && <p>{error.password1[0]}</p>}
+						{error?.password1 && <p className="error">{error.password1[0]}</p>}
 					</div>
 					<div className="field">
 						<label>Confirm Password</label>
@@ -87,7 +87,7 @@ const Signup = () => {
 							onChange={handleChange}
 							disabled={loading}
 						/>
-						{error?.password2 && <p>{error.password2[0]}</p>}
+						{error?.password2 && <p className="error">{error.password2[0]}</p>}
 					</div>
 					<Button
 						label="Signup"

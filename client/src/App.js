@@ -11,6 +11,8 @@ import PrivateRoute from "./Routes/PrivateRoutes";
 
 import { refreshAccessToken } from "./Actions/authAction";
 import NewPost from "./Pages/NewPost";
+import PostDetails from "./Pages/PostDetails";
+import EditPost from "./Pages/EditPost";
 
 const App = () => {
 	const [loading, setLoading] = useState(false);
@@ -65,6 +67,15 @@ const App = () => {
 						element={
 							<PrivateRoute>
 								<NewPost />
+							</PrivateRoute>
+						}
+					/>
+					<Route path="/posts/:slug" element={<PostDetails />} />
+					<Route
+						path="/posts/edit/:slug"
+						element={
+							<PrivateRoute>
+								<EditPost />
 							</PrivateRoute>
 						}
 					/>

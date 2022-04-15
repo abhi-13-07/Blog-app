@@ -5,8 +5,11 @@ import {
 	POST_SUBMIT_REQUEST,
 	POST_SUBMIT_SUCCESS,
 	POST_SUBMIT_FAILURE,
+	POST_DETAILS_REQUEST,
+	POST_DETAILS_SUCCESS,
+	POST_DETAILS_FAILURE,
 } from "../Constants/postConstants";
-import { getPosts, newPost } from "../Api/postsApi";
+import { getPost, getPosts, newPost } from "../Api/postsApi";
 import store from "../store";
 
 export const fetchHomeFeed = () => async dispatch => {
@@ -41,3 +44,17 @@ export const addNewPost =
 			console.log(err);
 		}
 	};
+
+export const fetchPostDetails = slug => async dispatch => {
+	dispatch({ type: POST_DETAILS_REQUEST });
+	try {
+		const { status, data } = await getPost(slug);
+		if (status === 200) {
+			dispatch({ type: POST_DETAILS_SUCCESS, payload: data });
+			return;
+		}
+		dispatch({ type: POST_DETAILS_FAILURE, payload: data });
+	} catch (err) {
+		console.log(err);
+	}
+};

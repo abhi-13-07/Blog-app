@@ -29,20 +29,18 @@ export const authReducer = (state = initialAuthState, { type, payload }) => {
 			return { ...state, loading: true };
 		case LOGIN_SUCESS:
 		case SIGNUP_SUCESS:
-			const { exp } = jwtDecode(payload.access);
-
 			return {
 				...state,
 				accessToken: payload.access,
-				user: payload.user,
-				expiresIn: exp,
+				user: { ...payload.user, id: jwtDecode(payload.access).user_id },
+				expiresIn: jwtDecode(payload.access).exp,
 				loading: false,
 				error: null,
 			};
 		case REFRESH_ACCESS_TOKEN_SUCCESS:
 			return {
 				...state,
-				user: payload.user,
+				user: { ...payload.user, id: jwtDecode(payload.access).user_id },
 				accessToken: payload.access,
 				expiresIn: jwtDecode(payload.access).exp,
 			};

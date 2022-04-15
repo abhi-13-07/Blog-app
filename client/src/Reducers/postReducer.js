@@ -7,6 +7,10 @@ import {
 	POST_SUBMIT_SUCCESS,
 	POST_SUBMIT_REQUEST,
 	HOME_FEED_RELOAD,
+	POST_DETAILS_REQUEST,
+	POST_DETAILS_SUCCESS,
+	POST_DETAILS_FAILURE,
+	POST_DETAILS_RESET,
 } from "../Constants/postConstants";
 
 const initialHomeState = { posts: [], loading: false, error: null, reload: false };
@@ -37,6 +41,14 @@ export const postReducer = (state = initialPostState, { type, payload }) => {
 			return { ...state, loading: false };
 		case POST_SUBMIT_FAILURE:
 			return { ...state, error: payload };
+		case POST_DETAILS_REQUEST:
+			return { ...state, loading: true };
+		case POST_DETAILS_SUCCESS:
+			return { ...state, loading: false, ...payload };
+		case POST_DETAILS_FAILURE:
+			return { ...state, loading: false, error: payload };
+		case POST_DETAILS_RESET:
+			return initialPostState;
 		default:
 			return state;
 	}

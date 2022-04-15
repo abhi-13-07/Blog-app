@@ -1,9 +1,11 @@
-import MDEditor from "@uiw/react-md-editor";
+import { useCallback } from "react";
+import { Editor } from "./Editor";
 import React from "react";
-import rehypeSanitize from "rehype-sanitize";
 import Input from "./Input";
 
 const CreatePost = ({ title, body, onChange }) => {
+	const handleChange = useCallback(val => onChange("body", val), [onChange]);
+
 	return (
 		<form>
 			<div className="field">
@@ -17,13 +19,7 @@ const CreatePost = ({ title, body, onChange }) => {
 			</div>
 			<div className="field">
 				<label>Body</label>
-				<MDEditor
-					value={body}
-					onChange={val => onChange("body", val)}
-					previewOptions={{
-						rehypePlugins: [[rehypeSanitize]],
-					}}
-				/>
+				<Editor value={body} onChange={handleChange} />
 			</div>
 		</form>
 	);

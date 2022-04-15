@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "../Components";
 import Base from "./Base";
@@ -12,9 +13,12 @@ const NewPost = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const handleChange = (name, value) => {
-		dispatch({ type: POST_FIELD_CHANGE, payload: { [name]: value } });
-	};
+	const handleChange = useCallback(
+		(name, value) => {
+			dispatch({ type: POST_FIELD_CHANGE, payload: { [name]: value } });
+		},
+		[dispatch]
+	);
 
 	const handleSubmit = e => {
 		dispatch(

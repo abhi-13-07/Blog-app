@@ -6,6 +6,7 @@
 @import "./shared/avatar.css";
 @import "./shared/postcard.css";
 @import "./shared/input.css";
+@import "./shared/editor.css";
 
 /* a {
 	text-decoration: none;
@@ -74,7 +75,7 @@ body {
 	font-size: 16px;
 }
 
-.field p {
+.field .error {
 	margin: 0;
 	padding: 5px 0 5px 0;
 	color: var(--danger-color);

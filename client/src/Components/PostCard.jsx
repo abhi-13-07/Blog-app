@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 const PostCard = ({ post }) => {
 	const user = post.user;
 	const userDetails = post.user_details;
-	const defaultProfilePic = process.env.REACT_APP_DEFAULT_USER_IMAGE;
 
-	const userProfilePic =
-		userDetails.profile_image === "default.jpg" ? defaultProfilePic : userDetails.profile_image;
+	const prefix = "http://localhost:8000/";
+	const userProfilePic = prefix + userDetails.profile_image;
 
 	return (
 		<div className="post-card">
@@ -20,7 +19,7 @@ const PostCard = ({ post }) => {
 				</Link>
 			</div>
 			<div>
-				<Link to={`/posts/${post.id}`} className="post-title">
+				<Link to={`/posts/${post.slug}`} className="post-title">
 					<h1>{post.title}</h1>
 				</Link>
 			</div>

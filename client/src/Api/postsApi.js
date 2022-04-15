@@ -30,3 +30,15 @@ export const newPost = async ({ title, body }, accessToken) => {
 		console.clear();
 	}
 };
+
+export const getPost = async slug => {
+	try {
+		const { data, status } = await get(`details/${slug}`);
+		return {
+			data,
+			status,
+		};
+	} catch (err) {
+		console.clear();
+	}
+};

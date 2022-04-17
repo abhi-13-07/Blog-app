@@ -9,7 +9,7 @@ import {
 	POST_DETAILS_SUCCESS,
 	POST_DETAILS_FAILURE,
 } from "../Constants/postConstants";
-import { getPost, getPosts, newPost } from "../Api/postsApi";
+import { getPost, getPosts, newPost, updatePost } from "../Api/postsApi";
 import store from "../store";
 
 export const fetchHomeFeed = () => async dispatch => {
@@ -57,4 +57,23 @@ export const fetchPostDetails = slug => async dispatch => {
 	} catch (err) {
 		console.log(err);
 	}
+};
+
+export const editPost = (slug, body, callback) => {
+	return async dispatch => {
+		const { accessToken } = store.getState().auth;
+		dispatch({ type: POST_SUBMIT_REQUEST });
+
+		try {
+			const { data, status } = await updatePost(slug, body, accessToken);
+
+			if (status === 200) {
+				dispatch({ type: POST_SUBMIT_SUCCESS });
+				callback();
+			}
+			dispatch({ type: POST_SUBMIT_FAILURE, payload: data });
+		} catch (err) {
+			console.log(err);
+		}
+	};
 };

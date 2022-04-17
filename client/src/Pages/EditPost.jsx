@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, CreatePost, Icon } from "../Components";
 import Base from "./Base";
-import { fetchPostDetails } from "../Actions/postAction";
-import { POST_DETAILS_RESET } from "../Constants/postConstants";
+import { editPost, fetchPostDetails } from "../Actions/postAction";
+import { POST_DETAILS_RESET, POST_FIELD_CHANGE } from "../Constants/postConstants";
 
 const EditPost = () => {
 	const { loading, title, body } = useSelector(state => state.post);
@@ -20,12 +20,19 @@ const EditPost = () => {
 		};
 	}, [dispatch, slug]);
 
-	const handleChange = () => {
-		//
-	};
+	const handleChange = useCallback(
+		(name, value) => {
+			dispatch({ type: POST_FIELD_CHANGE, payload: { [name]: value } });
+		},
+		[dispatch]
+	);
 
 	const handleSubmit = () => {
-		//
+		dispatch(
+			editPost(slug, { title, body }, () => {
+				navigate(`/posts/${slug}`);
+			})
+		);
 	};
 
 	return (

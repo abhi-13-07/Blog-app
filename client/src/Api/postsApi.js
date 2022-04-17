@@ -1,4 +1,4 @@
-import { get, post } from "./core";
+import { get, post, put } from "./core";
 
 export const getPosts = async () => {
 	try {
@@ -34,6 +34,21 @@ export const newPost = async ({ title, body }, accessToken) => {
 export const getPost = async slug => {
 	try {
 		const { data, status } = await get(`details/${slug}`);
+		return {
+			data,
+			status,
+		};
+	} catch (err) {
+		console.clear();
+	}
+};
+
+export const updatePost = async (slug, body, accessToken) => {
+	try {
+		const { data, status } = await put(`update/${slug}`, body, {
+			Authorization: `Bearer ${accessToken}`,
+		});
+
 		return {
 			data,
 			status,
